@@ -24,8 +24,15 @@ jobs:
         with:
           hugo-version: '0.101.0'
 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      
       - name: Build
-        run: npm run build
+        run: |
+        npm install
+        npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
