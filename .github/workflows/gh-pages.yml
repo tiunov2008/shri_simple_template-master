@@ -1,43 +1,28 @@
-name: GitHub Pages
+name: NodeJS with Webpack
 
 on:
   push:
-    branches:
-      - master 
+    branches: [ "master" ]
   pull_request:
+    branches: [ "master" ]
+
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+    
     steps:
-      - uses: actions/checkout@v3
-      - uses: html-webpack-plugin
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+    - uses: actions/checkout@v3
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.101.0'
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      
-      - name: Build
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-
-        if: ${{ github.ref == 'refs/heads/master' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+    - name: Build
+      run: |
+        npm install
+        npm run build
