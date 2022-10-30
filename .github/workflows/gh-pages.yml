@@ -22,5 +22,6 @@ jobs:
   merge:  
     runs-on: ubuntu-latest
     steps:
-      if: ${{ github.event_name == 'pull_request' }}
-      run: echo "Run only on pull_request event"
+      - name: Step one
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "Run only on pull_request event"
