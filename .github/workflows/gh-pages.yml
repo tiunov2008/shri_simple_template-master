@@ -15,13 +15,12 @@ jobs:
       with:
         node-version: 16.x
         cache: npm
-    run: |
-      npm install
-      npm run lint:js
-      npm run lint:css
-      npm run build
-      npm run analyze 
-      npm run validate
+    - run: npm install
+    - run: npm run lint:js
+    - run: npm run lint:css
+    - run: npm run build
+    - run: npm run analyze 
+    - run: npm run validate
   merge:  
     runs-on: ubuntu-latest
     steps:  
