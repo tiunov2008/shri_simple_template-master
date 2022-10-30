@@ -21,8 +21,8 @@ jobs:
     - run: npm run validate
   merge:  
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
-      if: ${{ github.event_name == 'pull_request' }}
       - uses: peaceiris/actions-gh-pages@v3.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
