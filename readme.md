@@ -21,5 +21,3 @@
    В качестве платформы CI используйте [GitHub Actions](https://docs.github.com/en/actions).
 
 
-Final Test
-
