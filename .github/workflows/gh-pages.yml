@@ -24,4 +24,5 @@ jobs:
         # below accordingly.
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          enable_jekyll: true
+          publish_dir: ./dist
