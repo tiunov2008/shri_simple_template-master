@@ -38,9 +38,7 @@ const config = {
     },
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+    new HtmlWebpackPlugin(),
     new StatoscopePlugin({
       saveReportTo: 'report.html',
       saveStatsTo: 'stats.json',
