@@ -9,7 +9,7 @@ export function Application() {
     <div>
       <nav>
         <Link data-testid="link-home" to="/">
-          Home
+          123
         </Link>
         <Link to="/about">About</Link>
       </nav>
