@@ -23,5 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step one
-        if: ${{ github.event_name == 'pull_request' }}
-        run: echo {{github.event_name}}
+        run: echo ${{github.event_name}}
