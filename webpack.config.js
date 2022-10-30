@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
-
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const config = {
   mode: 'production',
   devServer: {
@@ -47,8 +47,14 @@ const config = {
       saveOnlyStats: false,
       open: false,
     }),
+    new StylelintPlugin({
+      configFile: '.stylelintrc',
+      failOnError: false,
+      quiet: false,
+  }),
   ],
   module: {
+    
     rules: [
       {
         test: /\.css$/i,
