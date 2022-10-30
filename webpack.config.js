@@ -10,7 +10,12 @@ const config = {
     open: true,
   },
   entry: {
-    main: './src/index.js',
+    index: {
+      import: './src/index.js',
+      dependON: ['about', 'home']
+    },
+    about: './src/pages/About.js',
+    home: './src/pages/Home.js',
   },
   resolve: {
     fallback: {
