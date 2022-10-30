@@ -20,4 +20,4 @@
 
    В качестве платформы CI используйте [GitHub Actions](https://docs.github.com/en/actions).
 
-Test6
+Test7
