@@ -1,28 +1,31 @@
-name: GitHub Pages
-
 on:
   push:
+    branches: [ "master" ]
   pull_request:
-
+    branches: [ "master" ]
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+  commit:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        cache: npm
+    - run: npm install
+    - run: npm run lint:js
+    - run: npm run lint:css
+    - run: npm run build
+    - run: npm run analyze 
+    - run: npm run validate
+  merge:  
+    needs: commit
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           enable_jekyll: true
-          publish_dir: ./dist
+          destination_dir: subdir
+          
