@@ -37,9 +37,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        enable_jekyll: true
-        publish_dir: ./dist
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          enable_jekyll: true
+          publish_dir: ./dist
