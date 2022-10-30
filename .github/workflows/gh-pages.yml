@@ -22,12 +22,12 @@ jobs:
     needs: commit
     runs-on: ubuntu-22.04
     if: ${{github.event_name = “pull_request”}}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          enable_jekyll: true
-          publish_dir: ./dist
+      steps:
+        - uses: actions/checkout@v3
+        - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            enable_jekyll: true
+            publish_dir: ./dist
           
