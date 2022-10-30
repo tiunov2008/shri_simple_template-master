@@ -21,8 +21,3 @@ jobs:
     - run: npm run build
     - run: npm run analyze 
     - run: npm run validate
-  merge:  
-    runs-on: ubuntu-latest
-    steps:  
-      - if: github.event_name == “pull_request”
-        run: echo "123"
