@@ -24,4 +24,4 @@ jobs:
     steps:
       - name: Step one
         if: ${{ github.event_name == 'pull_request' }}
-        run: echo "Run only on pull_request event"
+        run: echo {{github.event_name}}
