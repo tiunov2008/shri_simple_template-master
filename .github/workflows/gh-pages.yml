@@ -22,5 +22,8 @@ jobs:
   merge:  
     runs-on: ubuntu-latest
     steps:
-      - name: Step one
-        run: echo ${{github.event_name}}
+      if: ${{ github.event_name == 'pull_request' }}
+      - uses: peaceiris/actions-gh-pages@v3.9.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
